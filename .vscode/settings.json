@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.txt": "lua",
+        "*.cs": "csharp",
+        "stdio.h": "c",
+        "process.h": "c",
+        "tlhelp32.h": "c",
+        "windows.h": "c",
+        "signal.h": "c",
+        "string.h": "c",
+        "ctype.h": "c",
+        "stdlib.h": "c"
+    }
+}

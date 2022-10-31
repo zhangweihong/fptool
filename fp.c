@@ -55,7 +55,7 @@ int main(int argc, char *args[])
     int i = 1;
     int maxSizeFind = 20;
     char **willFind = (char **)calloc(maxSizeFind, sizeof(char *));
-    int maxSizePS = 20;
+    int maxSizePS = 200;
     struct ProcessStruct *allProcess = calloc(maxSizePS, sizeof(struct ProcessStruct));
     int startPushFindIndex = -1;
     while (args[i] != NULL)
@@ -102,15 +102,17 @@ int main(int argc, char *args[])
         {
             maxSizePS = countProcess * 2 * sizeof(struct ProcessStruct);
             allProcess = realloc(allProcess, maxSizePS);
-        }
+            printf("maxSizePS %d \n",maxSizePS);
 
+        }
+        
         if (startPushFindIndex > -1)
         {
             char *origin = strupr(pe.szExeFile);
             if (arryIsHave(willFind, origin))
             {
                 allProcess[countProcess].id = pe.th32ProcessID;
-                allProcess[countProcess].name = calloc(300, sizeof(char));
+                allProcess[countProcess].name = malloc(100 * sizeof(char));
                 strcpy(allProcess[countProcess].name, pe.szExeFile);
                 countProcess++;
             }
@@ -118,7 +120,8 @@ int main(int argc, char *args[])
         else
         {
             allProcess[countProcess].id = pe.th32ProcessID;
-            allProcess[countProcess].name = calloc(300, sizeof(char));
+            printf("pe.szExeFile %d %s\n",countProcess, pe.szExeFile);
+            allProcess[countProcess].name = malloc(100 * sizeof(char));
             strcpy(allProcess[countProcess].name, pe.szExeFile);
             countProcess++;
         }
